@@ -3,21 +3,21 @@
 # dependencies
 /FRONTEND/node_modules
 /BACKEND/node_modules
-/.pnp
-.pnp.js
+/FRONTEND/.pnp
+/FRONTEND/.pnp.js
 
 # testing
-/coverage
+/FRONTEND/coverage
 
 # production
-/build
+/FRONTEND/build
 
 # misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+FRONTEND/.DS_Store
+FRONTEND/.env.local
+FRONTEND/.env.development.local
+FRONTEND/.env.test.local
+FRONTEND/.env.production.local
 
 npm-debug.log*
 yarn-debug.log*
