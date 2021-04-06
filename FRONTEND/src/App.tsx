@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.scss';
+import API from './API/API';
+import axios from 'axios';
 
 function App() {
 
@@ -8,6 +10,8 @@ function App() {
     timestamp: number
   }
 
+
+
   const [taskInput, setTaskInput] = useState<any>("");
   const [taskList, setTaskList] = useState<PropsTask[]>(
     []);
@@ -15,6 +19,24 @@ function App() {
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setTaskInput(e.target.value);
   }
+
+  useEffect(() => {
+
+    const getAPI = async () => {
+      const obj = new API();
+      const y = await obj.getData();
+      try {
+        const y = await axios.get('http://localhost:3000/');
+        console.log(y.data);
+      } catch (error) {
+        console.log("THIS" ,error);
+      }
+
+    }
+
+    getAPI();
+  }, []);
+
 
   function handleSubmit(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
@@ -44,12 +66,15 @@ function App() {
           Todo List
         </h1>
 
+
         <form className="inputs">
 
           <input onKeyPress={handleKeypress} placeholder="So What's On Your Mind?" value={taskInput} onChange={handleChange}></input>
           <button onClick={handleSubmit}><p>+</p></button>
 
         </form>
+
+        <h2>{taskList.length}</h2>
 
         <div className="list_container">
           <p>{taskList.map((i, key) => (
